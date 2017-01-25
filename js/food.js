@@ -1,18 +1,30 @@
 let fs = require('fs');
-function convert() {
 let readfile = fs.createReadStream('./inputdata/FoodFacts.csv', 'utf-8');
+module.exports = (function(obj) {
+// if((typeof saltv)!=="object"){
+//   throw new Error('not a number');
+// }
+var len = obj.length;
+if (!(obj instanceof Array)) {
+throw new Error('It is not an array');
+}
+else if(obj.length==0)
+{
+  throw new Error(' the array does not have any value');
+}
+var allContent = [];
 let data = '';
 readfile.on('data', function(chunk) {
   data = data + chunk;
 });
+
 readfile.on('end', function() {
   let line = data.split('\n');
   let head = line[0].split(',');
-  let allContent = [];
-  let saltcontent = new Array(9).fill(0);
-  let sugarcontent = new Array(9).fill(0);
-  let countries = ['Netherlands', 'Canada', 'United Kingdom',
-   'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'];
+
+  let saltcontent = new Array(len).fill(0);
+  let sugarcontent = new Array(len).fill(0);
+  let countries = obj;
   let countryIndex = head.indexOf('countries_en');
   let saltIndex = head.indexOf('salt_100g');
   let sugarIndex = head.indexOf('sugars_100g');
@@ -46,8 +58,12 @@ sugarcontent[index] = sugarcontent[index] + parseFloat(sugarvalue);
     obj['sugar'] = sugarcontent[j];
     allContent.push(obj);
   }
+
   console.log(JSON.stringify(allContent));
   fs.writeFile('./outputdata/part1.json', JSON.stringify(allContent), 'utf-8');
+
 });
-}
-convert();
+console.log(obj);
+console.log("kjrhjv");
+  return ("success");
+});
