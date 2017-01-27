@@ -4,7 +4,7 @@
   "scripts": {
     "test": "mocha",
     "build": "gulp build",
-    "execute": "node js/food.js"
+    "execute": "node js/foodFacts.js"
   },
   "author": "StackRoute",
   "license": "Apache-2.0",
