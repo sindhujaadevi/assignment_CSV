@@ -1,3 +1,6 @@
-node_modules
-/
-inputdata/FoodFacts.csv/
+node_modules/
+inputdata/FoodFacts.csv
+.babelrc
+.eslintrc.js
+gulpfile.js
+log4js.conf.json

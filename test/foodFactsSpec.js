@@ -35,7 +35,8 @@ describe('Test Application as WhiteBox', function(){
         done();
     });
   it('array values check', function(done){
-      expect(convert.bind('undefined',['Netherlands', 'Canada', 'United Kingdom','United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'])).to.not.throw(Error,'the array is  well defined');
+      expect(convert.bind('undefined',['Netherlands', 'Canada', 'United Kingdom','United States',
+      'Australia', 'France', 'Germany', 'Spain', 'South Africa'])).to.not.throw(Error,'the array is  well defined');
           done();
     });
     it('should output json for part1', function(done){
@@ -45,8 +46,8 @@ describe('Test Application as WhiteBox', function(){
            done();
     });
   });
-    describe('Test createInterface method of readline', function(err){
-    		it('should be called only once', function() {
+    describe('Test createInterface method of readline', function(err) {
+    it('should be called only once', function() {
                 var spyCreateInterface = sinon.spy(readline, 'createInterface');
                 convert(['Netherlands', 'Canada', 'United Kingdom',
                'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa']);
@@ -61,17 +62,17 @@ describe('Test Application as WhiteBox', function(){
               'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa']);
                sinon.assert.called(stub);
                readline.Interface.prototype.on.restore();
-               sinon.assert.calledWith(stub,'line');
+               sinon.assert.calledWith(stub, 'line');
 
         });
        });
 
-        describe('Test on method of Interface for close event', function(err){
+        describe('Test on method of Interface for close event', function(err) {
         it('should be called', function() {
                var stub = sinon.stub(readline.Interface.prototype,'on');
                convert(['Netherlands', 'Canada', 'United Kingdom',
               'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa']);
                readline.Interface.prototype.on.restore();
-               sinon.assert.calledWith(stub,'close');
+               sinon.assert.calledWith(stub, 'close');
         });
 });

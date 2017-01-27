@@ -1,4 +1,4 @@
-module.exports = (input) => {
+module.exports = (function(input) {
     if (!(input instanceof Array)) {
         throw new Error('It is not an array');
     }
@@ -112,4 +112,4 @@ module.exports = (input) => {
        fs.writeFile('./outputdata/part2.json', JSON.stringify(part2));
     });
     return 'JSON written successfully';
-};
+});
