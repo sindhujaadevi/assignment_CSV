@@ -1,13 +1,4 @@
-module.exports = (input) => {
-    if (!(input instanceof Array)) {
-        throw new Error('It is not an array');
-    }
-    if (input.length === 0) {
-        throw new Error(' the array does not have any value');
-    }
     const fs = require('fs');
-    let log4js = require('log4js');
-    let logger = log4js.getLogger();
     let inputStream = fs.createReadStream('./inputdata/FoodFacts.csv');
     let r1 = require('readline').createInterface({
         input: inputStream,
@@ -107,9 +98,7 @@ module.exports = (input) => {
                 Protein: proteincontentSouth
             }
           );
-      logger.debug(JSON.stringify(part2));
+      console.log(JSON.stringify(part2));
        fs.writeFile('./outputdata/part1.json', JSON.stringify(part1));
        fs.writeFile('./outputdata/part2.json', JSON.stringify(part2));
     });
-    return 'JSON written successfully';
-};
