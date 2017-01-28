@@ -43,30 +43,27 @@ describe('Test Application as WhiteBox', function() {
        done();
    });
   it('should be an array', function(done) {
-    expect(convert.bind('undefined', 8575)).to.throw(Error,'It is not an array');
+    expect(convert.bind('undefined', 8575)).to.throw(Error, 'It is not an array');
        done();
     });
     it('should fail for string', function(done) {
-      expect(convert.bind('undefined', "Netherland")).to.throw(Error,'It is not an array');
+      expect(convert.bind('undefined', 'Netherlands')).to.throw(Error, 'It is not an array');
          done();
       });
-  it('length check', function(done) {
-    expect(convert.bind('undefined',[])).to.throw(Error,'the array does not have any value');
+  it('should fail if the length of array is null', function(done) {
+    expect(convert.bind('undefined', [])).to.throw(Error, 'the array does not have any value');
         done();
     });
   it('should not fail if it is an array object', function(done) {
-      expect(convert.bind('undefined',['Netherlands', 'Canada', 'United Kingdom','United States',
-      'Australia', 'France', 'Germany', 'Spain', 'South Africa'])).to.not.throw(Error,'the array is  well defined');
+      expect(convert.bind('undefined', ['Netherlands', 'Canada', 'United Kingdom', 'United States',
+      'Australia', 'France', 'Germany', 'Spain', 'South Africa'])).to.not.throw(Error, 'the array is  well defined');
           done();
     });
     it('should output success message at last ', function(done) {
-          var result = new convert(['Netherlands', 'Canada', 'United Kingdom',
-         'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'])
-          // console.log(result);
-          result.convertWithStream(function(){
-            done();
-          });
-
+                let input = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
+                let result = convert(input);
+          result.should.be.equal(input);
+          done();
     });
   });
     describe('Test createInterface method of readline', function(err) {
@@ -78,7 +75,7 @@ describe('Test Application as WhiteBox', function() {
                 sinon.assert.calledOnce(spyCreateInterface);
         });
       });
-        describe('Test on method of Interface for line event', function(err){
+        describe('Test on method of Interface for line event', function(err) {
         it('should be called', function() {
                var stub = sinon.stub(readline.Interface.prototype, 'on');
                convert(['Netherlands', 'Canada', 'United Kingdom',
@@ -90,10 +87,9 @@ describe('Test Application as WhiteBox', function() {
        });
         describe('Test on method of Interface for close event', function(err) {
         it('should be called', function() {
-               var stub = sinon.stub(readline.Interface.prototype,'on');
-              var t = convert(['Netherlands', 'Canada', 'United Kingdom',
+               var stub = sinon.stub(readline.Interface.prototype, 'on');
+              convert(['Netherlands', 'Canada', 'United Kingdom',
               'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa']);
-              // console.log(t);
                readline.Interface.prototype.on.restore();
                sinon.assert.calledWith(stub, 'close');
         });

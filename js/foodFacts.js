@@ -1,4 +1,4 @@
-module.exports = (function(input) {
+module.exports = function(input) {
     if (!(input instanceof Array)) {
         throw new Error('It is not an array');
     }
@@ -7,8 +7,9 @@ module.exports = (function(input) {
     }
     let len = input.length;
     const fs = require('fs');
-    let log4js = require('log4js');
-    let logger = log4js.getLogger();
+    // let log4js = require('log4js');
+    // let logger = log4js.getLogger();
+
     let inputStream = fs.createReadStream('./inputdata/FoodFacts.csv');
     let r1 = require('readline').createInterface({
         input: inputStream,
@@ -118,5 +119,5 @@ module.exports = (function(input) {
       convertWithStream();
       fs.writeFile('./outputdata/part.json', JSON.stringify(part1));
       fs.writeFile('./outputdata/part3.json', JSON.stringify(part2));
-      return 'Success';
-});
+      return countries;
+};
