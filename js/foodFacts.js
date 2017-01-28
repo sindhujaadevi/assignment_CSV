@@ -5,6 +5,7 @@ module.exports = (function(input) {
     if (input.length === 0) {
         throw new Error(' the array does not have any value');
     }
+    let len = input.length;
     const fs = require('fs');
     let log4js = require('log4js');
     let logger = log4js.getLogger();
@@ -14,13 +15,13 @@ module.exports = (function(input) {
         terminal: false
     });
     let lines = [];
+    // array to hold salt and sugar content
     let part1 = [];
+    // array to hold fat, protein and carbohydrates content
     let part2 = [];
-
-    let countries = ['Netherlands', 'Canada', 'United Kingdom', 'United States',
-        'Australia', 'France', 'Germany', 'Spain', 'South Africa'];
-    let saltContent = new Array(9).fill(0);
-    let sugarContent = new Array(9).fill(0);
+    let countries = input;
+    let saltContent = new Array(len).fill(0);
+    let sugarContent = new Array(len).fill(0);
     let northEurope = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
     let centralEurope = ['France', 'Belgium', 'Germany', 'Switzerland', 'Netherlands'];
     let southEurope = ['Portugal', 'Greece', 'Italy', 'Spain', 'Croatia', 'Albania'];
@@ -45,7 +46,8 @@ module.exports = (function(input) {
     let carboIndex = 0;
     let fatIndex = 0;
     let flag = true;
-    r1.on('line', function(line) {
+    let convertWithStream = () =>{
+  r1.on('line', function(line) {
         lines = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
         if (flag) {
             countryIndex = countryIndex + lines.indexOf('countries_en');
@@ -89,7 +91,7 @@ module.exports = (function(input) {
                 Salt: saltContent[i],
                 Sugar: sugarContent[i]
             });
-        }
+            }
             part2.push({
                 Country: 'North Europe',
                 Fat: fatcontentNorth,
@@ -105,11 +107,16 @@ module.exports = (function(input) {
                 Fat: fatcontentSouth,
                 carbohydrates: carbocontentSouth,
                 Protein: proteincontentSouth
-            }
-          );
-      logger.debug(JSON.stringify(part2));
+            });
+      // writing part1 content into the json file
        fs.writeFile('./outputdata/part1.json', JSON.stringify(part1));
+      // writing part2 content into the json file
        fs.writeFile('./outputdata/part2.json', JSON.stringify(part2));
-    });
-    return 'JSON written successfully';
+          });
+          return 'kkj';
+        };
+      convertWithStream();
+      fs.writeFile('./outputdata/part.json', JSON.stringify(part1));
+      fs.writeFile('./outputdata/part3.json', JSON.stringify(part2));
+      return 'Success';
 });
