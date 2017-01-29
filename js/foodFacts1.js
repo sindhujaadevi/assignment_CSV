@@ -1,3 +1,13 @@
+let method3 = (function(input) {
+  if (!(input instanceof Array)) {
+      throw new Error('It is not an array');
+  }
+  if (input.length === 0) {
+      throw new Error('the array does not have any value');
+  }
+  return "success1";
+});
+exports.method3 = method3;
     const fs = require('fs');
     let inputStream = fs.createReadStream('./inputdata/FoodFacts.csv');
     let r1 = require('readline').createInterface({
@@ -7,7 +17,7 @@
     let lines = [];
     let part1 = [];
     let part2 = [];
-
+console.log(method3.input);
     let countries = ['Netherlands', 'Canada', 'United Kingdom', 'United States',
         'Australia', 'France', 'Germany', 'Spain', 'South Africa'];
     let saltContent = new Array(9).fill(0);
@@ -18,7 +28,7 @@
     let fatcontentNorth = 0, carbocontentNorth = 0, proteincontentNorth = 0;
     let fatcontentCentral = 0, carbocontentCentral = 0, proteincontentCentral = 0;
     let fatcontentSouth = 0, carbocontentSouth = 0, proteincontentSouth = 0;
-    function indexFind(lineIndex) {
+    let indexFind = function (lineIndex) {
         let index = -1;
         if (lineIndex) {
             for (let i = 0; i < countries.length; i = i + 1) {
@@ -29,6 +39,7 @@
         }
         return index;
     }
+    exports.greet = indexFind;
     let countryIndex = 0;
     let saltIndex = 0;
     let sugarIndex = 0;
@@ -98,7 +109,8 @@
                 Protein: proteincontentSouth
             }
           );
-      console.log(JSON.stringify(part2));
+          console.log(JSON.stringify(part1));
        fs.writeFile('./outputdata/part1.json', JSON.stringify(part1));
        fs.writeFile('./outputdata/part2.json', JSON.stringify(part2));
     });
+// })();

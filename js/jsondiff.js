@@ -28,14 +28,14 @@ module.exports = (function() {
                     diffObjs: diffs
                 };
             }
-            else{
+            else {
                 return {
                     diffs: diffs.length,
                     diffObjs: []
                 };
             }
 
-                function objValues(obj) {
+            function objValues(obj) {
                 let keys = Object.keys(obj);
                 let values = [];
                 keys.forEach(function(keyName) {
@@ -44,10 +44,11 @@ module.exports = (function() {
                 });
                 return values;
             }
+
             function toObjValueHash(obj) {
-                // return Object.values(obj).sort().join(';');
                 return objValues(obj).sort().join(';');
             }
+
             function toDataMap(data) {
                 return data.map(toObjValueHash);
             }

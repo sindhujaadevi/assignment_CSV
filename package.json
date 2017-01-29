@@ -4,7 +4,7 @@
   "scripts": {
     "test": "mocha",
     "build": "gulp build",
-    "execute": "node js/foodFacts.js"
+    "execute": "node js/foodFacts1.js"
   },
   "author": "StackRoute",
   "license": "Apache-2.0",
@@ -26,6 +26,5 @@
     "gulp-eslint": "^3.0.1",
     "gulp-mocha": "^3.0.1",
     "mocha": "^3.1.2"
-
   }
 }
