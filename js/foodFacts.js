@@ -29,15 +29,9 @@ module.exports = function(input) {
     let northEurope = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
     let centralEurope = ['France', 'Belgium', 'Germany', 'Switzerland', 'Netherlands'];
     let southEurope = ['Portugal', 'Greece', 'Italy', 'Spain', 'Croatia', 'Albania'];
-    let fatcontentNorth = 0;
-    let carbocontentNorth = 0;
-    let proteincontentNorth = 0;
-    let fatcontentCentral = 0;
-    let carbocontentCentral = 0;
-    let proteincontentCentral = 0;
-    let fatcontentSouth = 0;
-    let carbocontentSouth = 0;
-    let proteincontentSouth = 0;
+    let fatcontentNorth = 0; let carbocontentNorth = 0; let proteincontentNorth = 0;
+    let fatcontentCentral = 0; let carbocontentCentral = 0; let proteincontentCentral = 0;
+    let fatcontentSouth = 0; let carbocontentSouth = 0; let proteincontentSouth = 0;
 
   let indexFind = function (lineValue) {
         let index = -1;
@@ -49,7 +43,7 @@ module.exports = function(input) {
             }
         }
         return index;
-    }
+    };
     exports.greet = indexFind;
     // Initialise the index of various values
     let countryIndex = 0;

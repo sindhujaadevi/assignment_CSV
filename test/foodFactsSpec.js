@@ -29,8 +29,9 @@ describe('Test Application as Blackbox', function() {
     });
 });
 describe('Test Application as WhiteBox', function() {
-  let countries = ['Netherlands', 'Canada', 'United Kingdom', 'United States',
-      'Australia', 'France', 'Germany', 'Spain', 'South Africa'];
+    let countries = ['Netherlands', 'Canada', 'United Kingdom', 'United States',
+        'Australia', 'France', 'Germany', 'Spain', 'South Africa'
+    ];
     // **Run once before the first test case**
     before(function() {
         console.log('WhiteBox testing Started')
@@ -62,29 +63,23 @@ describe('Test Application as WhiteBox', function() {
         expect(convert.method3.bind('undefined', countries)).to.not.throw(Error, 'the array is  well defined');
         done();
     });
-    it.skip('should output success message at last ', function(done) {
-        let input = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
-        let result = convert(input);
-        result.should.be.equal(input);
+    it('should output the input that we send ', function(done) {
+        // let input = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
+        let result = convert.method3(countries);
+        result.should.be.equal(countries);
         done();
     });
     it('should be uuu an array', function(done) {
-      let input = 'Canada';
-      let result = convert.greet(input);
-      result.should.be.equal(Number);
-      done();
-    });
-    it.skip('should be uuu an array', function(done) {
-      let input = 'Canada';
-      let result = convert.method3();
-      result.should.be.equal('success1');
-      done();
+        let input = 'Canada';
+        let result = convert.greet(input, countries);
+        expect(result).to.be.a.number;
+        done();
     });
 });
 describe('Test createInterface method of readline', function(err) {
     it('should be called only once', function() {
         let spyCreateInterface = sinon.spy(readline, 'createInterface');
-        convert(['Netherlands', 'Canada', 'United Kingdom',
+        convert.method3(['Netherlands', 'Canada', 'United Kingdom',
             'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'
         ]);
         readline.createInterface.restore();
@@ -94,7 +89,7 @@ describe('Test createInterface method of readline', function(err) {
 describe('Test on method of Interface for line event', function(err) {
     it('should be called', function() {
         let stub = sinon.stub(readline.Interface.prototype, 'on');
-        convert(['Netherlands', 'Canada', 'United Kingdom',
+        convert.method3(['Netherlands', 'Canada', 'United Kingdom',
             'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'
         ]);
         sinon.assert.called(stub);
@@ -105,7 +100,7 @@ describe('Test on method of Interface for line event', function(err) {
 describe('Test on method of Interface for close event', function(err) {
     it('should be called', function() {
         let stub = sinon.stub(readline.Interface.prototype, 'on');
-        convert(['Netherlands', 'Canada', 'United Kingdom',
+        convert.method3(['Netherlands', 'Canada', 'United Kingdom',
             'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'
         ]);
         readline.Interface.prototype.on.restore();

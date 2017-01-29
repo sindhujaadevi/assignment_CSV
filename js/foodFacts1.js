@@ -1,13 +1,25 @@
-let method3 = (function(input) {
+// let sample = ['Netherlands', 'Canada', 'United Kingdom', 'United States',
+//     'Australia', 'France', 'Germany', 'Spain', 'South Africa'];
+let indexFind = function (lineIndex, countries) {
+  this.countries = countries;
+    let index = -1;
+    if (lineIndex) {
+        for (let i = 0; i < countries.length; i = i + 1) {
+            if (lineIndex.includes(countries[i])) {
+                index = i;
+            }
+        }
+    }
+    return index;
+};
+let method3 = function(input1) {
+  let input = input1;
   if (!(input instanceof Array)) {
       throw new Error('It is not an array');
   }
   if (input.length === 0) {
       throw new Error('the array does not have any value');
   }
-  return "success1";
-});
-exports.method3 = method3;
     const fs = require('fs');
     let inputStream = fs.createReadStream('./inputdata/FoodFacts.csv');
     let r1 = require('readline').createInterface({
@@ -17,35 +29,17 @@ exports.method3 = method3;
     let lines = [];
     let part1 = [];
     let part2 = [];
-console.log(method3.input);
-    let countries = ['Netherlands', 'Canada', 'United Kingdom', 'United States',
-        'Australia', 'France', 'Germany', 'Spain', 'South Africa'];
+    let countries = input;
     let saltContent = new Array(9).fill(0);
     let sugarContent = new Array(9).fill(0);
     let northEurope = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
     let centralEurope = ['France', 'Belgium', 'Germany', 'Switzerland', 'Netherlands'];
     let southEurope = ['Portugal', 'Greece', 'Italy', 'Spain', 'Croatia', 'Albania'];
-    let fatcontentNorth = 0, carbocontentNorth = 0, proteincontentNorth = 0;
-    let fatcontentCentral = 0, carbocontentCentral = 0, proteincontentCentral = 0;
-    let fatcontentSouth = 0, carbocontentSouth = 0, proteincontentSouth = 0;
-    let indexFind = function (lineIndex) {
-        let index = -1;
-        if (lineIndex) {
-            for (let i = 0; i < countries.length; i = i + 1) {
-                if (lineIndex.includes(countries[i])) {
-                    index = i;
-                }
-            }
-        }
-        return index;
-    }
-    exports.greet = indexFind;
-    let countryIndex = 0;
-    let saltIndex = 0;
-    let sugarIndex = 0;
-    let proteinIndex = 0;
-    let carboIndex = 0;
-    let fatIndex = 0;
+    let fatcontentNorth = 0; let carbocontentNorth = 0; let proteincontentNorth = 0;
+    let fatcontentCentral = 0; let carbocontentCentral = 0; let proteincontentCentral = 0;
+    let fatcontentSouth = 0; let carbocontentSouth = 0; let proteincontentSouth = 0;
+    let countryIndex = 0; let saltIndex = 0; let sugarIndex = 0;
+    let proteinIndex = 0; let carboIndex = 0; let fatIndex = 0;
     let flag = true;
     r1.on('line', function(line) {
         lines = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
@@ -58,7 +52,7 @@ console.log(method3.input);
             fatIndex = fatIndex + lines.indexOf('fat_100g');
         }
         if (countryIndex !== -1 || saltIndex !== -1 || sugarIndex !== -1) {
-            let newIndex = indexFind(lines[countryIndex]);
+            let newIndex = indexFind(lines[countryIndex], countries);
             sugarContent[newIndex] = sugarContent[newIndex] + Number(lines[sugarIndex]);
             saltContent[newIndex] = saltContent[newIndex] + Number(lines[saltIndex]);
         }
@@ -83,7 +77,7 @@ console.log(method3.input);
         }
         }
         flag = false;
-    });
+          });
     r1.on('close', function() {
         for (let i = 0; i < countries.length; i = i + 1) {
             part1.push({
@@ -113,4 +107,8 @@ console.log(method3.input);
        fs.writeFile('./outputdata/part1.json', JSON.stringify(part1));
        fs.writeFile('./outputdata/part2.json', JSON.stringify(part2));
     });
-// })();
+return countries;
+};
+
+exports.method3 = method3;
+exports.greet = indexFind;
