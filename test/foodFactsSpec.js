@@ -64,15 +64,17 @@ describe('Test Application as WhiteBox', function() {
         done();
     });
     it('should output the input that we send ', function(done) {
-        // let input = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
-        let result = convert.method3(countries);
-        result.should.be.equal(countries);
+        let input = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
+        let result = convert.method3(input);
+        result.should.be.equal(input).and.have.lengthOf(4);
+      //  console.log(result);
         done();
     });
     it('should be uuu an array', function(done) {
         let input = 'Canada';
         let result = convert.greet(input, countries);
-        expect(result).to.be.a.number;
+        result.should.to.be.a.Number;
+        expect(result).to.be.at.most(countries.length - 1);
         done();
     });
 });
