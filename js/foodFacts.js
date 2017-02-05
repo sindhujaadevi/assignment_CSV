@@ -118,9 +118,7 @@ module.exports = function(input) {
                 Protein: proteincontentSouth
             });
             // writing the json object of part1 into the json file
-            fs.writeFile('./outputdata/part1.json', JSON.stringify(part1));
-            // writing  the json object of part2 into the json file
-            fs.writeFile('./outputdata/part2.json', JSON.stringify(part2));
+            fs.writeFile('./outputdata/outputJsonSindhu1.json', JSON.stringify(part1));
         });
     //     return 'kkj';
     // };

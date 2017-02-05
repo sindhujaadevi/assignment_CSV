@@ -5,17 +5,13 @@ const should = require('chai').should();
 const expect = require('chai').expect;
 const sinon = require('sinon');
 const readline = require('readline');
-const convert = require('../js/foodFacts1');
-let jsonDiff = require('../js/jsondiff');
-let totalObjectKeys = require('../js/totalObjectKeys');
-let expectedJSON = require('../inputdata/part1.json');
-let actualJSON = require('../inputdata/ff.json');
+const convert = require('../js/foodFactsPart2');
+let jsonDiff = require('./jsondiff');
+let totalObjectKeys = require('./totalObjectKeys');
+let expectedJSON = require('./expectedjson/expectedJsonPart2.json');
+let actualJSON = require('../outputdata/multiLineChart.json');
 
 describe('Test Application as Blackbox', function() {
-    it('Test JSON is well formed', function(done) {
-        /*ToDO Parse JSON*/
-        done();
-    });
     it('JSON has expected Number of Objects', function(done) {
         let objMatrix = totalObjectKeys.traverse(actualJSON);
         expect(objMatrix.totalNoObjects).to.not.equal(0);
@@ -43,45 +39,45 @@ describe('Test Application as WhiteBox', function() {
         i++;
     });
     it('should fail if input is notprovided', function(done) {
-        expect(convert.method3).to.throw(Error, 'It is not an array');
+        expect(convert.main).to.throw(Error, 'It is not an array');
         done();
     });
     it('should be an array', function(done) {
-        expect(convert.method3.bind('undefined', 8575)).to.throw(Error, 'It is not an array');
+        expect(convert.main.bind('undefined', 8575)).to.throw(Error, 'It is not an array');
         done();
     });
 
     it('should fail for string', function(done) {
-        expect(convert.method3.bind('undefined', 'Netherlands')).to.throw(Error, 'It is not an array');
+        expect(convert.main.bind('undefined', 'Netherlands')).to.throw(Error, 'It is not an array');
         done();
     });
     it('should fail if the length of array is null', function(done) {
-        expect(convert.method3.bind('undefined', [])).to.throw(Error, 'the array does not have any value');
+        expect(convert.main.bind('undefined', [])).to.throw(Error, 'the array does not have any value');
         done();
     });
     it('should not fail if it is an array object', function(done) {
-        expect(convert.method3.bind('undefined', countries)).to.not.throw(Error, 'the array is  well defined');
+        expect(convert.main.bind('undefined', countries)).to.not.throw(Error, 'the array is  well defined');
         done();
     });
-    it('should output the input that we send ', function(done) {
-        let input = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
-        let result = convert.method3(input);
-        result.should.be.equal(input).and.have.lengthOf(4);
-      //  console.log(result);
-        done();
-    });
-    it('should be uuu an array', function(done) {
-        let input = 'Canada';
-        let result = convert.greet(input, countries);
-        result.should.to.be.a.Number;
-        expect(result).to.be.at.most(countries.length - 1);
-        done();
-    });
+    // it('should output the input that we send ', function(done) {
+    //     let input = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
+    //     let result = convert.main(input);
+    //     result.should.be.equal(input).and.have.lengthOf(4);
+    //   //  console.log(result);
+    //     done();
+    // });
+    // it('should be uuu an array', function(done) {
+    //     let input = 'Canada';
+    //     let result = convert.greet(input, countries);
+    //     result.should.to.be.a.Number;
+    //     expect(result).to.be.at.most(countries.length - 1);
+    //     done();
+    // });
 });
 describe('Test createInterface method of readline', function(err) {
     it('should be called only once', function() {
         let spyCreateInterface = sinon.spy(readline, 'createInterface');
-        convert.method3(['Netherlands', 'Canada', 'United Kingdom',
+        convert.main(['Netherlands', 'Canada', 'United Kingdom',
             'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'
         ]);
         readline.createInterface.restore();
@@ -91,7 +87,7 @@ describe('Test createInterface method of readline', function(err) {
 describe('Test on method of Interface for line event', function(err) {
     it('should be called', function() {
         let stub = sinon.stub(readline.Interface.prototype, 'on');
-        convert.method3(['Netherlands', 'Canada', 'United Kingdom',
+        convert.main(['Netherlands', 'Canada', 'United Kingdom',
             'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'
         ]);
         sinon.assert.called(stub);
@@ -102,7 +98,7 @@ describe('Test on method of Interface for line event', function(err) {
 describe('Test on method of Interface for close event', function(err) {
     it('should be called', function() {
         let stub = sinon.stub(readline.Interface.prototype, 'on');
-        convert.method3(['Netherlands', 'Canada', 'United Kingdom',
+        convert.main(['Netherlands', 'Canada', 'United Kingdom',
             'United States', 'Australia', 'France', 'Germany', 'Spain', 'South Africa'
         ]);
         readline.Interface.prototype.on.restore();
