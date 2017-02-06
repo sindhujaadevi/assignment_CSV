@@ -1,27 +1,20 @@
 let	margin = {top: 30, right: 40, bottom: 30, left: 50};
 let	width = 600 - margin.left - margin.right;
 let	height = 270 - margin.top - margin.bottom;
-let d3;
-let x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], 1, 1);
+// let d3;
+let x = d3.scale.ordinal().rangeRoundBands([0, width], 1, 1);
 let	y = d3.scale.linear().range([height, 0]);
-
- let	xAxis = d3.svg.axis().scale(x).orient('bottom');
-
-let	yAxis = d3.svg.axis().scale(y)
-	.orient('left');
-
+let	xAxis = d3.svg.axis().scale(x).orient('bottom');
+let	yAxis = d3.svg.axis().scale(y).orient('left');
 let	valueline = d3.svg.line()
 	.x(function(d) { return x(d.Country); })
 	.y(function(d) { return y(d.Fat); });
-
 let	valueline2 = d3.svg.line()
 	.x(function(d) { return x(d.Country); })
 	.y(function(d) { return y(d.Protein); });
-
-  let	valueline3 = d3.svg.line().x(function(d) { return x(d.Country); })
-.y(function(d) { return y(d.carbohydrates); });
-
+  let	valueline3 = d3.svg.line()
+	.x(function(d) { return x(d.Country); })
+	.y(function(d) { return y(d.carbohydrates); });
 let	svg = d3.select('#multiline')
 	.append('svg')
 		.attr('width', width + margin.left + margin.right)

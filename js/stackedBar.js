@@ -1,7 +1,7 @@
 let margin = {top: 20, right: 20, bottom: 30, left: 40};
   let width = 960 - margin.left - margin.right;
   let height = 500 - margin.top - margin.bottom;
-    let d3;
+    // let d3;
 let x = d3.scale.ordinal()
     .rangeRoundBands([0, width], 0.1);
 let y = d3.scale.linear()
