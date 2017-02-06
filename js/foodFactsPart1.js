@@ -64,11 +64,11 @@ let main = function(input1) {
                 Sugar: sugarContent[i]
             });
         }
-        fs.writeFile('./outputdata/satackedBar.json', JSON.stringify(part1));
+        fs.writeFile('./outputdata/stackedBar.json', JSON.stringify(part1));
     });
     return countries;
 };
-// input data if neccessary
+// sample input data if neccessary
 /* let sample = ['Netherlands', 'Canada', 'United Kingdom', 'United States',
     'Australia', 'France', 'Germany', 'Spain', 'South Africa']; */
 // Exporting the methods

@@ -5,9 +5,6 @@ module.exports = {
     "node": true,
     "es6": true
   },
-
-
-
   "ecmaFeatures": {
     "arrowFunctions": true,
     "binaryLiterals": true,
@@ -110,7 +107,7 @@ module.exports = {
     "no-process-env": 2, // disallow use of process.env (off by default)
     "no-proto": 2, // disallow usage of __proto__ property
     "no-redeclare": 2, // disallow declaring the same variable more then once
-    "no-return-assign": 2, // disallow use of assignment in return statement
+    "no-return-assign": 0, // disallow use of assignment in return statement
     "no-script-url": 2, // disallow use of javascript: urls.
     "no-self-compare": 2, // disallow comparisons where both sides are exactly the same (off by default)
     "no-sequences": 2, // disallow use of comma operator
@@ -141,9 +138,9 @@ module.exports = {
     "no-label-var": 2, // disallow labels that share a name with a variable
     "no-shadow": 2, // disallow declaration of variables already declared in the outer scope
     "no-shadow-restricted-names": 2, // disallow shadowing of names such as arguments
-    "no-undef": 2, // disallow use of undeclared variables unless mentioned in a /*global */ block
-    "no-undef-init": 2, // disallow use of undefined when initializing variables
-    "no-undefined": 2, // disallow use of undefined variable (off by default)
+    "no-undef": 0, // disallow use of undeclared variables unless mentioned in a /*global */ block
+    "no-undef-init": 0, // disallow use of undefined when initializing variables
+    "no-undefined": 0, // disallow use of undefined variable (off by default)
     "no-unused-vars": 2, // disallow declaration of variables that are not used in the code
     "no-use-before-define": 2, // disallow use of variables before they are defined
 
@@ -179,7 +176,7 @@ module.exports = {
     "no-underscore-dangle": 1, // disallow dangling underscores in identifiers
     "no-extra-parens": 1, // disallow wrapping of non-IIFE statements in parens
     "one-var": [1, "never"], // allow just one var statement per function (off by default)
-    "operator-assignment": [1, "never"], // require assignment operator shorthand where possible or prohibit it entirely (off by default)
+    "operator-assignment": [0, "never"], // require assignment operator shorthand where possible or prohibit it entirely (off by default)
     "padded-blocks": [1, "never"], // enforce padding within blocks (off by default)
     "quote-props": [1, "as-needed"], // require quotes around object literal property names (off by default)
     "quotes": [1, "single"], // specify whether double or single quotes should be used

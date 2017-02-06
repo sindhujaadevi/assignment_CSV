@@ -1,4 +1,5 @@
 let main = function(input1) {
+  // test to validate the input
   let input = input1;
   if (!(input instanceof Array)) {
       throw new Error('It is not an array');
@@ -7,12 +8,14 @@ let main = function(input1) {
       throw new Error('the array does not have any value');
   }
     const fs = require('fs');
+    // Creating an input stream
     let inputStream = fs.createReadStream('./inputdata/FoodFacts.csv');
     let r1 = require('readline').createInterface({
         input: inputStream,
         terminal: false
     });
     let lines = [];
+    // array to hold fat, protein and carbohydrates content
     let part2 = [];
     let countries = input;
     let northEurope = ['United Kingdom', 'Denmark', 'Sweden', 'Norway'];
@@ -23,10 +26,14 @@ let main = function(input1) {
     let fatcontentSouth = 0; let carbocontentSouth = 0; let proteincontentSouth = 0;
     let countryIndex = 0;
     let proteinIndex = 0; let carboIndex = 0; let fatIndex = 0;
+    // Initialise the index of various values
     let flag = true;
+    // Reading the file line by line
+    // Line event called
     r1.on('line', function(line) {
         lines = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
         if (flag) {
+            // Calculating various index
             countryIndex = countryIndex + lines.indexOf('countries_en');
             proteinIndex = proteinIndex + lines.indexOf('proteins_100g');
             carboIndex = carboIndex + lines.indexOf('carbohydrates_100g');
@@ -76,4 +83,5 @@ let main = function(input1) {
     });
 return countries;
 };
+// Exporting the methods
 exports.main = main;
